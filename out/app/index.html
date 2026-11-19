@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast Cover Studio — make your own sunset cover</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">☀</span>
+    <div>
+      <h1>VICE COAST <span>COVER STUDIO</span></h1>
+      <p>Your photo + one line of words → a sunset cover. Photos never leave this machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="exportTop" class="btn primary">Export PNG ↓</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="stage-col">
+    <div class="stage-wrap">
+      <canvas id="preview" width="720" height="720" aria-label="Cover preview"></canvas>
+      <p class="hint">Click a panel to select it, then drag the photo inside it. Scroll on a panel to zoom.</p>
+    </div>
+    <div class="size-row" role="group" aria-label="Export size">
+      <span class="row-label">Export size</span>
+      <button class="chip size-chip" data-size="1080x1080">1080 × 1080</button>
+      <button class="chip size-chip" data-size="1080x1350">1080 × 1350</button>
+      <button class="chip size-chip" data-size="1920x1080">1920 × 1080</button>
+      <button class="chip size-chip" data-size="1080x1920">1080 × 1920 story</button>
+    </div>
+  </section>
+
+  <aside class="panel-col">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <p class="card-note">Add your own photos (read on this machine only), or try a sample.</p>
+      <label class="btn file-btn">Add photos from this machine
+        <input id="photo" type="file" accept="image/*" multiple hidden>
+      </label>
+      <div class="samples">
+        <button class="btn ghost" id="samplePier">Sample · Pier</button>
+        <button class="btn ghost" id="sampleBoulevard">Sample · Boulevard</button>
+      </div>
+      <div id="tray" class="tray" aria-label="Your photos"></div>
+      <button class="btn ghost" id="fillAll">Fill every panel with the selected photo</button>
+    </section>
+
+    <section class="card">
+      <h2>2 · Layout</h2>
+      <div class="btn-grid" id="layouts">
+        <button class="btn layout-btn" data-layout="grid4">Four panels</button>
+        <button class="btn layout-btn" data-layout="hero3">Hero + three</button>
+        <button class="btn layout-btn" data-layout="single">One full photo</button>
+        <button class="btn layout-btn" data-layout="tilt">Tilted snapshots</button>
+      </div>
+      <h2 class="sub">Selected panel</h2>
+      <div class="panel-tools">
+        <label>Photo <select id="panelPhoto"></select></label>
+        <label>Zoom <input id="zoom" type="range" min="1" max="2.5" step="0.01" value="1"></label>
+        <div class="nudge-row">
+          <span>Move</span>
+          <button class="btn mini" data-nudge="0,-0.04">↑</button>
+          <button class="btn mini" data-nudge="0,0.04">↓</button>
+          <button class="btn mini" data-nudge="-0.04,0">←</button>
+          <button class="btn mini" data-nudge="0.04,0">→</button>
+          <button class="btn mini" id="recenter">Centre</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Words</h2>
+      <label class="field">Title
+        <input id="caption" type="text" value="VICE COAST" maxlength="24">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle" type="text" value="SUNSET BOULEVARD" maxlength="40">
+      </label>
+      <label class="field">Title style
+        <select id="titleStyle">
+          <option value="sunset">Sunset gradient</option>
+          <option value="neon">Neon pink</option>
+          <option value="white">Plain white</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>4 · Colour grade</h2>
+      <div class="btn-grid" id="grades">
+        <button class="btn grade-btn" data-grade="sunset">Sunset</button>
+        <button class="btn grade-btn" data-grade="neon">Neon night</button>
+        <button class="btn grade-btn" data-grade="gold">Gold hour</button>
+        <button class="btn grade-btn" data-grade="teal">Teal coast</button>
+        <button class="btn grade-btn" data-grade="noir">Noir</button>
+      </div>
+      <label class="check"><input id="grain" type="checkbox" checked> Film grain + vignette</label>
+      <label class="check"><input id="palms" type="checkbox" checked> Palm silhouettes</label>
+    </section>
+
+    <button id="export" class="btn primary big">Export PNG ↓</button>
+    <p id="status" class="status" role="status">Ready — pick a layout, then export.</p>
+    <p id="selftest" class="status"></p>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>100% offline · no upload · no account. All artwork, lettering and palm silhouettes are drawn by this app.
+  Sample photos were made with an image model and are free to use.</p>
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
